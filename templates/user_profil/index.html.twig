@@ -1,0 +1,53 @@
+{% extends 'backoffice.html.twig' %}
+
+{% block title %}{{ breadcrumd.infoPage }}{% endblock %}
+
+{% block body %}
+    {{ breadcrumd.html|raw }}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Gender</th>
+                <th>Lastname</th>
+                <th>Firstname</th>
+                <th>Phone</th>
+                <th>Cellphone</th>
+                <th>NaissanceAt</th>
+                <th>Age</th>
+                <th>Address</th>
+                <th>Zipcode</th>
+                <th>City</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user_profil in user_profils %}
+            <tr>
+                <td>{{ user_profil.id }}</td>
+                <td>{{ user_profil.gender }}</td>
+                <td>{{ user_profil.lastname }}</td>
+                <td>{{ user_profil.firstname }}</td>
+                <td>{{ telephone(user_profil.phone) }}</td>
+                <td>{{ telephone(user_profil.cellphone) }}</td>
+                <td>{{ user_profil.naissanceAt ? user_profil.naissanceAt|date('d-m-Y') : '' }}</td>
+                <td>{{ user_profil.age }}</td>
+                <td>{{ user_profil.address }}</td>
+                <td>{{ user_profil.zipcode }}</td>
+                <td>{{ user_profil.city }}</td>
+                <td>
+                    <a href="{{ path('user_profil_show', {'id': user_profil.id}) }}" class="btn  btn-sm btn-success"><i class="far fa-eye"></i></a>
+                    <a href="{{ path('user_profil_edit', {'id': user_profil.id}) }}" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_profil_new') }}">Create new</a>
+{% endblock %}

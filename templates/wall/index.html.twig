@@ -1,0 +1,174 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}Hello WallController!{% endblock %}
+
+{% block body %}
+    <style>
+        .position-fixed{
+            width: 22%;
+        }
+    </style>
+    <div class="row">
+    <div class="col-3">
+        <div class="card mt-3">
+            <h5 class="card-header">Tags</h5>
+            <div class="card-body">
+                {% for e in 0..50 %}
+                <a href="" class="text-decoration-none"><span class="badge bg-primary">tags{{ e }}</span></a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="card mt-3">
+            <h5 class="card-header">Catégories</h5>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">An item</li>
+                    <li class="list-group-item">A second item</li>
+                    <li class="list-group-item">A third item</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card mt-3">
+            <h5 class="card-header">Sites</h5>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">An item</li>
+                    <li class="list-group-item">A second item</li>
+                    <li class="list-group-item">A third item</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card mt-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2">
+                        {% if app.user.userProfil %}
+                            {% if app.user.userProfil.avatar %}
+                                <img class="user-avatar md-avatar rounded-circle" style="border: 5px solid #10cb10; width: 45px; height: 45px" alt="{{ app.user.userProfil.fullName }}" src="{{ vich_uploader_asset(app.user.userProfil, 'imageFile') }}">
+                            {% else %}
+                                {% if app.user.userProfil.civil == 'Mr.' %}
+                                    <img class="user-avatar md-avatar rounded-circle" style="width: 35px; height: 35px" alt="{{ app.user.userProfil.fullName }}" src="{{ asset('images/avatar/avatar-homme.png') }}">
+                                {% else %}
+                                    <img class="user-avatar md-avatar rounded-circle" style="width: 35px; height: 35px" alt="{{ app.user.userProfil.fullName }}" src="{{ asset('images/avatar/avatar-femme.png') }}">
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                        <br/>
+                        <button class="btn btn-primary btn-sm mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fas fa-wrench"></i>
+                        </button>
+                    </div>
+                    <div class="col-10">
+                        <textarea class="form-control" placeholder="Libérer votre inspiration"></textarea>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                                <select class="form-control mt-3">
+                                    <option>Catégorie 1</option>
+                                    <option>Catégorie 2</option>
+                                    <option>Catégorie 3</option>
+                                </select>
+                                <select class="form-control mt-3">
+                                    <option>Ogeu les bains</option>
+                                    <option>Pau</option>
+                                    <option>Lescar</option>
+                                </select>
+                                <input type="text" class="form-control mt-3" placeholder="Incrivez vos tags">
+                                <input type="file" class="form-control mt-3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-success btn-sm w-100">Enregistrer</a>
+            </div>
+        </div>
+        {% for a in 0..10 %}
+        <div class="card mt-3">
+            <h5 class="card-header">
+                <div class="row">
+                    <div class="col-2">
+                        <img class="user-avatar md-avatar rounded-circle" style="width: 45px; height: 45px" alt="{{ app.user.userProfil.fullName }}" src="{{ asset('images/avatar/avatar-homme.png') }}">
+                    </div>
+                    <div class="col-8">
+                        <b>Nom Prénom</b><br/>
+                        <small><i>Pole Développement Pau</i> - <i><b>Développeur</b> </i></small>
+                    </div>
+                    <div class="col-2">
+                        <i>5h</i>
+                    </div>
+                </div>
+            </h5>
+            <div class="col-12" >
+                <a href="https://picsum.photos/600/300?random={{ a }}" data-lightbox="image-{{ a }}" data-title="....">
+                    <img src="https://picsum.photos/600/300?random={{ a }}" class="card-img-top" alt="...">
+                </a>
+            </div>
+            <div class="row px-2">
+                {% for i in 0..10 %}
+                <div class="col-4 px-1" >
+                    <a href="https://picsum.photos/900/500?random={{ a~i }}" data-lightbox="image-{{ a~i }}" data-title="....">
+                        <img src="https://picsum.photos/600/300?random={{ a~i }}" class="card-img-top  my-1" alt="...">
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Qu'est-ce que le Lorem Ipsum?</h5>
+                <p class="card-text" style="text-align: justify">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.</p>
+            </div>
+            <div class="card-body">
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-6">
+                        <a href="" class="btn btn-primary btn-sm"><i class="far fa-plus-square"></i> Photo</a>
+                        <a href="" class="btn btn-warning btn-sm ms-1"><i class="far fa-edit"></i></a>
+                    </div>
+                    <div class="col-6">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col-3">
+        <div class="position-fixed">
+            <div class="card mt-3">
+                <h5 class="card-header">
+                    Contacts
+                </h5>
+                <ul class="list-group list-group-flush" style="overflow-x: hidden; overflow-y:scroll; min-height: 250px; max-height: 500px;">
+                    {% for a in 0..50 %}
+                    <a href="" class="text-decoration-none" title="Nom Prenom">
+                        <li class="list-group-item">
+                            <img class="user-avatar md-avatar rounded-circle" style="width: 35px; height: 35px" alt="{{ app.user.userProfil.fullName }}" src="{{ asset('images/avatar/avatar-homme.png') }}">
+                            Nom Prenom
+                            <span class="float-end" style="color: green"><i class="fas fa-blog"></i></span>
+                        </li>
+                    </a>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+        // Ajuster height du textaera
+        const tx = document.getElementsByTagName("textarea");
+        for (let i = 0; i < tx.length; i++) {
+            tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+            tx[i].addEventListener("input", OnInput, false);
+        }
+
+        function OnInput() {
+            this.style.height = "auto";
+            this.style.height = (this.scrollHeight) + "px";
+        }
+    </script>
+{% endblock %}
+

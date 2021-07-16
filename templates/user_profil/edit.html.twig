@@ -1,0 +1,13 @@
+{% extends 'backoffice.html.twig' %}
+
+{% block title %}Edit UserProfil{% endblock %}
+
+{% block body %}
+    <h1>Edit UserProfil</h1>
+
+    {{ include('user_profil/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('user_profil_index') }}">back to list</a>
+
+    {{ include('user_profil/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BlueBook | {% block title %}Welcome!{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap core CSS -->
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+    <style>
+        .map-responsive {
+            overflow:hidden;
+            padding-bottom:56.25%;
+            position:relative;>
+        height:0;
+        }
+
+        .map-responsive iframe {
+            left:0;
+            top:0;
+            height:100%;
+            width:100%;
+            position:absolute;
+        }
+        #breadcrumb{
+            /*background-color: #8dc1aa;*/
+            padding: 10px;
+            color: white;
+            font-size: 1.4em;
+        }
+        #sidebarMenu{
+            font-size: 1.2em;
+            /*background-color: #8dc1aa;*/
+        }
+        main{
+            /*background-color: #cce4e4;*/
+        }
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+{{ navbarAdmin() }}
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block  sidebar collapse">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">
+                            <span data-feather="home"></span>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link  d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#submenu-lots">
+                            <span>
+                                <span class="sidebar-icon"><i class="fas fa-server"></i></span>
+                                <span class="sidebar-text">Les Articles</span>
+                            </span>
+                            <span class="link-arrow"><span class="fas fa-chevron-right"></span></span>
+                        </span>
+                        <div class="multi-level collapse ms-3" role="list" id="submenu-lots" aria-expanded="false">
+                            <ul class="flex-column nav">
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <span class="sidebar-text-contracted"><i class="fas fa-users"></i></span>
+                                        <span class="sidebar-text">Liste des articles</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="" class="nav-link">
+                                        <span class="sidebar-text-contracted"><i class="fas fa-user-plus"></i></span>
+                                        <span class="sidebar-text">Ajouter un article</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>Paramétrage</span>
+                    <a class="link-secondary" href="#" aria-label="Add a new report">
+                        <span data-feather="plus-circle"></span>
+                    </a>
+                </h6>
+                <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <span class="nav-link  d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#submenu-utilisateurs">
+                            <span>
+                                <span class="sidebar-icon"><i class="fas fa-users"></i></span>
+                                <span class="sidebar-text">Les utilisateurs</span>
+                            </span>
+                            <span class="link-arrow"><span class="fas fa-chevron-right"></span></span>
+                        </span>
+                        <div class="multi-level collapse ms-3" role="list" id="submenu-utilisateurs" aria-expanded="false">
+                            <ul class="flex-column nav">
+                                <li class="nav-item">
+                                    <a href="{{ path('user_profil_index') }}" class="nav-link">
+                                        <span class="sidebar-text-contracted"><i class="fas fa-list-ol"></i></span>
+                                        <span class="sidebar-text">Liste des utilisateurs</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="{{ path('user_profil_new') }}" class="nav-link">
+                                        <span class="sidebar-text-contracted"><i class="fas fa-plus"></i></span>
+                                        <span class="sidebar-text">Ajouter un utilisateur</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            {% block body %}{% endblock %}
+        </main>
+    </div>
+</div>
+</body>
+</html>
